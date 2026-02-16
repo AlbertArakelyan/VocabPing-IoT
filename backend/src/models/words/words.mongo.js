@@ -16,6 +16,9 @@ const wordSchema = new mongoose.Schema({
   description: {
     type: String,
   },
+  examples: {
+    type: [String],
+  },
   topic: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Topic',
