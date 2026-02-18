@@ -24,6 +24,10 @@ const wordSchema = new mongoose.Schema({
     ref: 'Topic',
     required: true,
   },
+  isSent: {
+    type: Boolean,
+    default: false,
+  },
   timesShown: {
     type: Number,
     default: 0,
