@@ -25,6 +25,9 @@ const settingSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  // tgUserIds: {
+  //   type: [String],
+  // },
   shouldDisplayOnScreen: {
     type: Boolean,
     required: true,
