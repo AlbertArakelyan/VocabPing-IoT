@@ -1,4 +1,4 @@
-const { createWord } = require('../models/words/words.model');
+const { createWord, getRandomWord } = require('../models/words/words.model');
 const httpStatuses = require('../constants/httpStatuses');
 
 async function httpCreateWord(req, res) {
@@ -19,6 +19,7 @@ async function httpCreateWord(req, res) {
       message: 'Word created successfully',
     });
   } catch (e) {
+    console.log(httpCreateWord.name, e);
     return res.status(httpStatuses.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: 'Word not created',
@@ -26,6 +27,32 @@ async function httpCreateWord(req, res) {
   }
 }
 
+async function httpGetRandomWord(req, res) {
+  try {
+    const word = await getRandomWord();
+
+    if (!word) {
+      return res.status(httpStatuses.NOT_FOUND).json({
+        success: false,
+        message: 'No word found',
+      });
+    }
+
+    return res.status(httpStatuses.OK).json({
+      success: true,
+      data: word,
+      message: 'Word retrieved successfully',
+    });
+  } catch (e) {
+    console.log(httpGetRandomWord.name, e);
+    return res.status(httpStatuses.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: 'Word not retrieved',
+    });
+  }
+}
+
 module.exports = {
   httpCreateWord,
+  httpGetRandomWord,
 };
