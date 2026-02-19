@@ -15,11 +15,10 @@ async function httpCreateWord(req, res) {
 
     return res.status(httpStatuses.CREATED).json({
       success: true,
-      body: newWord,
+      data: newWord,
       message: 'Word created successfully',
     });
   } catch (e) {
-    console.log(httpCreateWord.name, e);
     return res.status(httpStatuses.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: 'Word not created',
